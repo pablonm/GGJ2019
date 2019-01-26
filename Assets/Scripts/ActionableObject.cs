@@ -51,6 +51,7 @@ public abstract class ActionableObject : MonoBehaviour
         if (!done && collision.gameObject.CompareTag("Player"))
         {
             actionMessagePrefab.SetActive(true);
+            OnEnter();
         }
     }
 
@@ -59,6 +60,7 @@ public abstract class ActionableObject : MonoBehaviour
         if (!done && collision.gameObject.CompareTag("Player"))
         {
             actionMessagePrefab.SetActive(false);
+            OnExit();
         }
     }
 }
