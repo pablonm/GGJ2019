@@ -16,22 +16,28 @@ public class FlashlightController : MonoBehaviour
     private void Update()
     {
         bool pressingTrigger = Input.GetAxis("Fire1") > 0;
-        if (status.health > 0 && status.currentBatery > 0 && !status.recharging) {
+        if (status.health > 0 && status.currentBatery > 0 && !status.recharging)
+        {
             status.usingFlashlight = pressingTrigger;
             flashlight.gameObject.SetActive(status.usingFlashlight);
-            if (status.usingFlashlight) {
+            if (status.usingFlashlight)
+            {
                 status.currentBatery -= Time.deltaTime * batteryConsumption;
                 flashlight.right = new Vector3(Input.GetAxis("Right Stick X"), Input.GetAxis("Right Stick Y"), 0);
             }
-        } else {
+        }
+        else
+        {
             flashlight.gameObject.SetActive(false);
         }
-        if (pressingTrigger && status.currentBatery <= 0 && status.batteries > 0 && !status.recharging) {
+        if (pressingTrigger && status.currentBatery <= 0 && status.batteries > 0 && !status.recharging)
+        {
             StartCoroutine(Recharge());
         }
     }
 
-    private IEnumerator Recharge() {
+    private IEnumerator Recharge()
+    {
         status.recharging = true;
         yield return new WaitForSeconds(rechargeTime);
         status.recharging = false;
