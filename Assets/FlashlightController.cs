@@ -6,11 +6,14 @@ public class FlashlightController : MonoBehaviour
     public Transform flashlight;
     public float batteryConsumption = 20;
     public float rechargeTime = 2f;
+
     private PlayerStatus status;
+    private SpriteRenderer sprite;
 
     private void Start()
     {
         status = FindObjectOfType<PlayerStatus>();
+        sprite = GetComponent<SpriteRenderer>();
     }
 
     private void Update()
@@ -24,6 +27,7 @@ public class FlashlightController : MonoBehaviour
             {
                 status.currentBatery -= Time.deltaTime * batteryConsumption;
                 flashlight.right = new Vector3(Input.GetAxis("Right Stick X"), Input.GetAxis("Right Stick Y"), 0);
+                sprite.flipX = Input.GetAxis("Right Stick X") < 0;
             }
         }
         else
