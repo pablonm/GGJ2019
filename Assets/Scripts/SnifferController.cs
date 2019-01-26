@@ -4,16 +4,29 @@ using UnityEngine;
 
 public class SnifferController : MonoBehaviour
 {
+    public float enemyViewDistance = 2f;
+
     EnemyMovement Enemy;
-    // Start is called before the first frame update
+    Transform player;
+
+
     void Start()
     {
-        Enemy = this.transform.parent.GetComponent<EnemyMovement>();
+        Enemy = transform.parent.GetComponent<EnemyMovement>();
+        player = FindObjectOfType<PlayerStatus>().transform;
+    }
+
+    private void Update()
+    {
+        if (Vector2.Distance(transform.position, player.position) <= enemyViewDistance)
+        {
+            Enemy.findPlayer(player);
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag == "Player")
+        if (collision.gameObject.CompareTag("Player"))
         {
             Enemy.findPlayer(collision.transform);
         }

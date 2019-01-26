@@ -8,9 +8,12 @@ public class EnemyController : EnemyMovement
     public float zigzagVel = 3;
     private float angle = 0;
     private Rigidbody2D rb;
+    private PlayerStatus playerStatus;
+    public float hitInterval = 1f;
 
     public override void Initialize()
     {
+        playerStatus = FindObjectOfType<PlayerStatus>();
         rb = this.GetComponentInChildren<Rigidbody2D>();
     }
 
@@ -26,4 +29,14 @@ public class EnemyController : EnemyMovement
         rb.velocity = new Vector3(0, 0, 0);
     }
 
+    private new void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            Debug.Log("PUM");
+            playerStatus.health -= 34;
+            Destroy(gameObject);
+        }
+        base.OnTriggerStay2D(collision);
+    }
 }

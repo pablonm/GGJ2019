@@ -17,7 +17,7 @@ public class EnemyDamage : MonoBehaviour
 
         health -= Time.deltaTime * GlobalSettings.lightDamage;  
 
-         if (health < 0)
+        if (health < 0)
         {
             Debug.Log("Mori xD");
         }

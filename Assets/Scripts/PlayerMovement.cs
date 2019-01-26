@@ -37,5 +37,9 @@ public class PlayerMovement : MonoBehaviour
         {
             rb.velocity = new Vector2(Input.GetAxis("Horizontal") * speed, Input.GetAxis("Vertical") * speed);
         }
+        if (status.health < 0)
+        {
+            rb.velocity = Vector2.zero;
+        }
     }
 }
