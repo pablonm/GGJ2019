@@ -7,4 +7,5 @@ public class PlayerStatus : MonoBehaviour
     public int batteries = 0;
     public bool running = false;
     public bool recharging = false;
+    public bool usingFlashlight = false;
 }
