@@ -1,28 +1,30 @@
 ﻿using UnityEngine;
 
-public class GrabFlashlight : ActionableObject
+public class GrabFirstBattery : ActionableObject
 {
     public SpriteRenderer sprite;
     public Sprite normalFlashlight;
     public Sprite highlightFlashlight;
 
+    private PlayerStatus status;
+
     private void Start()
     {
-        Debug.Log("ASDASD");
+        status = FindObjectOfType<PlayerStatus>();
     }
 
     protected override void Action()
     {
-        // NADA
+        sprite.gameObject.SetActive(false);
     }
 
     protected override void OnEnter()
     {
-        // NADA
+        sprite.sprite = highlightFlashlight;
     }
 
     protected override void OnExit()
     {
-        // NADA
+        sprite.sprite = normalFlashlight;
     }
 }

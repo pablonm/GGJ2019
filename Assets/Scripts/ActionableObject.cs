@@ -38,7 +38,7 @@ public abstract class ActionableObject : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (!done && collision.gameObject.CompareTag("Player") && Input.GetKeyDown(KeyCode.Space))
+        if (!done && collision.gameObject.CompareTag("Player") && Input.GetAxis("Action") > 0)
         {
             done = true;
             actionMessagePrefab.SetActive(false);
