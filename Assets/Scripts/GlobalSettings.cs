@@ -1,9 +1,10 @@
 ﻿using UnityEngine;
 
-public class GlobalSettings : MonoBehaviour
+public static class GlobalSettings
 {
-    public float vodkaRate = 2f;
-    public float betteryRate = 1f;
-    public float maxStamina = 100f;
-    public int maxBattery = 8;
+    public static float vodkaRate = 2f;
+    public static float betteryRate = 1f;
+    public static float maxStamina = 100f;
+    public static int maxBattery = 8;
+    public static Transform cameraTarget;
 }
