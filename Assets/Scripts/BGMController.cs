@@ -9,7 +9,7 @@ public class BGMController : MonoBehaviour
     private Dictionary<string, AudioClip> clips;
     private List<AudioSource> sources;
 
-    private void Start()
+    private void Awake()
     {
         sources = new List<AudioSource>();
     }
@@ -26,14 +26,17 @@ public class BGMController : MonoBehaviour
     }
 
     private void StopAllSources() {
-        sources.ForEach((AudioSource s) =>
-        {
-            StartCoroutine(FadeOut(s, true));
-        });
+        if (sources.Count > 0) {
+            sources.ForEach((AudioSource s) =>
+            {
+                StartCoroutine(FadeOut(s, true));
+            });
+        }
     }
 
     private IEnumerator FadeIn(AudioSource source) {
         source.volume = 0f;
+        source.time = 0f;
         while (source.volume < 1.0f)
         {
             source.volume += 1f * Time.deltaTime / fadeTime;
@@ -55,28 +58,16 @@ public class BGMController : MonoBehaviour
     }
 
     public void ActivateTrack(int track) {
-        StartCoroutine(FadeIn(sources[track - 1]));
+        if (sources[track - 1].volume == 0)
+            StartCoroutine(FadeIn(sources[track - 1]));
     }
 
     public void DeactivateTrack(int track)
     {
-        StartCoroutine(FadeOut(sources[track - 1], false));
+        if (sources[track - 1].volume == 1)
+            StartCoroutine(FadeOut(sources[track - 1], false));
     }
 
-    private void Update()
-    {
-        if (Input.GetKeyUp(KeyCode.Q))
-        {
-            PlayClips(new List<PlayClipInfo>() { new PlayClipInfo("exploracion", true), new PlayClipInfo("batalla", false) });
-        }
-        if (Input.GetKeyUp(KeyCode.W)) {
-            ActivateTrack(2);
-        }
-        if (Input.GetKeyUp(KeyCode.E))
-        {
-            DeactivateTrack(2);
-        }
-    }
 }
 
 public class PlayClipInfo {
