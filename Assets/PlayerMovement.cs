@@ -29,6 +29,7 @@ public class PlayerMovement : MonoBehaviour
         else
         {
             status.running = false;
+            rb.velocity = Vector2.zero;
         }
         if (status.health > 0 && !status.recharging)
         {
