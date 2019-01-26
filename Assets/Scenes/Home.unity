@@ -112,6 +112,50 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &113187296
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 113187298}
+  - component: {fileID: 113187297}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &113187297
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 113187296}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8857b589b4142dc479c552bcd0eac9a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cameraTarget: {fileID: 1371622503}
+--- !u!4 &113187298
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 113187296}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 3.1860332, y: -0.43335235, z: 0.20198773}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &177021444
 GameObject:
   m_ObjectHideFlags: 0
@@ -185,6 +229,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   button: 0
   message: Grab Battery
+  repeatable: 0
   sprite: {fileID: 705615736}
   normalFlashlight: {fileID: 21300000, guid: dcf4ecdc63bc538479aab998a78a6dfa, type: 3}
   highlightFlashlight: {fileID: 21300000, guid: 19d1cb0660f31f543bb1326e9d2188b3,
@@ -346,7 +391,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &682574931
 GameObject:
@@ -431,7 +476,7 @@ Transform:
   - {fileID: 1496643202}
   - {fileID: 741972883}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!60 &682574934
 PolygonCollider2D:
@@ -588,6 +633,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   button: 0
   message: Leave
+  repeatable: 1
   sprite: {fileID: 938491743}
 --- !u!61 &741972885
 BoxCollider2D:
@@ -705,6 +751,7 @@ GameObject:
   - component: {fileID: 1337943019}
   - component: {fileID: 1337943018}
   - component: {fileID: 1337943017}
+  - component: {fileID: 1337943020}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -774,8 +821,30 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1337943020
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1337943016}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83259c7767fc8d049b6f62a15e7b80eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interpVelocity: 0
+  minDistance: 0
+  followDistance: 0
+  offset: {x: 0, y: 0, z: 0}
+--- !u!4 &1371622503 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5505611582945792574, guid: c68b9a4ae72d501409c7fa10117285c1,
+    type: 3}
+  m_PrefabInstance: {fileID: 1458987855}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1415482913
 GameObject:
   m_ObjectHideFlags: 0
@@ -856,7 +925,7 @@ PrefabInstance:
     - target: {fileID: 5505611582945792574, guid: c68b9a4ae72d501409c7fa10117285c1,
         type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 5505611582945792574, guid: c68b9a4ae72d501409c7fa10117285c1,
         type: 3}

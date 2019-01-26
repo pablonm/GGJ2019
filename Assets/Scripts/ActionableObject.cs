@@ -6,7 +6,9 @@ public abstract class ActionableObject : MonoBehaviour
     public enum Buttons { A, LT }
     public Buttons button;
     public string message;
+    public bool repeatable;
     protected bool done = false;
+
 
     private GameObject actionMessagePrefab;
 
@@ -40,8 +42,11 @@ public abstract class ActionableObject : MonoBehaviour
     {
         if (!done && collision.gameObject.CompareTag("Player") && Input.GetAxis("Action") > 0)
         {
-            done = true;
-            actionMessagePrefab.SetActive(false);
+            if (!repeatable)
+            {
+                done = true;
+                actionMessagePrefab.SetActive(false);
+            }
             Action();
         }
     }
