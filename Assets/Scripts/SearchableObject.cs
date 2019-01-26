@@ -2,37 +2,31 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SearchableObject : MonoBehaviour
+public class SearchableObject : ActionableObject
 {
     public float rate;
 
-    private bool isOpened;
     private PlayerStatus status;
-    private GlobalSettings globalSettings;
-    private Random randomer;
 
     void Start()
     {
-        isOpened = false;
         status = FindObjectOfType<PlayerStatus>();
-        globalSettings = FindObjectOfType<GlobalSettings>();
         Random.InitState(System.DateTime.Now.Millisecond);
     }
 
-    private void DiscoverRandomObject()
+    protected override void Action()
     {
-        isOpened = true;
-        status.batteries += Mathf.Min(globalSettings.maxBattery, Mathf.FloorToInt(Random.Range(0f, globalSettings.betteryRate)));
-        status.stamina += Mathf.Min(globalSettings.maxStamina, Mathf.FloorToInt(Random.Range(0f, globalSettings.vodkaRate)));
-        Debug.Log(status.batteries);
-        Debug.Log(status.stamina);
+        status.batteries += Mathf.Min(GlobalSettings.maxBattery, Mathf.FloorToInt(Random.Range(0f, GlobalSettings.betteryRate)));
+        status.stamina += Mathf.Min(GlobalSettings.maxStamina, Mathf.FloorToInt(Random.Range(0f, GlobalSettings.vodkaRate)));
     }
 
-    private void OnTriggerStay2D(Collider2D colider)
+    protected override void OnEnter()
     {
-        if (!isOpened && (colider.tag == "Player") && Input.GetKeyDown(KeyCode.Space))
-        {
-            DiscoverRandomObject();
-        }
+        return;
+    }
+
+    protected override void OnExit()
+    {
+        return;
     }
 }
