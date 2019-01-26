@@ -3,17 +3,18 @@ using UnityEngine;
 
 public class FlashlightController : MonoBehaviour
 {
-    public Transform flashlight;
     public float batteryConsumption = 20;
     public float rechargeTime = 2f;
+    public Transform flashlightArm;
 
     private PlayerStatus status;
     private SpriteRenderer sprite;
+    private PlayerAnimationsController animations;
 
     private void Start()
     {
         status = FindObjectOfType<PlayerStatus>();
-        sprite = GetComponent<SpriteRenderer>();
+        animations = FindObjectOfType<PlayerAnimationsController>();
     }
 
     private void Update()
@@ -22,17 +23,16 @@ public class FlashlightController : MonoBehaviour
         if (status.health > 0 && status.currentBatery > 0 && !status.recharging)
         {
             status.usingFlashlight = pressingTrigger;
-            flashlight.gameObject.SetActive(status.usingFlashlight);
+            flashlightArm.gameObject.SetActive(status.usingFlashlight);
             if (status.usingFlashlight)
             {
                 status.currentBatery -= Time.deltaTime * batteryConsumption;
-                flashlight.right = new Vector3(Input.GetAxis("Right Stick X"), Input.GetAxis("Right Stick Y"), 0);
-                sprite.flipX = Input.GetAxis("Right Stick X") < 0;
+                flashlightArm.right = new Vector3(Input.GetAxis("Right Stick X"), Input.GetAxis("Right Stick Y"), 0);
             }
         }
         else
         {
-            flashlight.gameObject.SetActive(false);
+            flashlightArm.gameObject.SetActive(false);
         }
         if (pressingTrigger && status.currentBatery <= 0 && status.batteries > 0 && !status.recharging)
         {
@@ -42,7 +42,9 @@ public class FlashlightController : MonoBehaviour
 
     private IEnumerator Recharge()
     {
+        status.usingFlashlight = false;
         status.recharging = true;
+        animations.Recharge();
         yield return new WaitForSeconds(rechargeTime);
         status.recharging = false;
         status.batteries--;
