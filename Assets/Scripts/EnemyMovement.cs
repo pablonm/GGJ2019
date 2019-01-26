@@ -2,21 +2,21 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyMovement : MonoBehaviour
+public abstract class EnemyMovement : MonoBehaviour
 {
     public float vel = 5;
     public float velPatrol = 1;
-    public float angleChangeInterval = 1;
     public float DistanceThreshold = 6;
     public bool patrol = true;
-    private Rigidbody2D rb;
+    public float angleChangeInterval = 1;
+
     private Transform player;
     private Vector2 vectorPatrol;
 
     // Start is called before the first frame update
     void Start()
     {
-        rb = this.GetComponentInChildren<Rigidbody2D>();
+        Initialize();
         StartCoroutine(RegenenateVector());
     }
 
@@ -28,12 +28,11 @@ public class EnemyMovement : MonoBehaviour
             if (distance < DistanceThreshold)
             {
                 Vector2 normV = Helper.NormalizeVector(new Vector2(player.position.x - this.transform.position.x, player.position.y - this.transform.position.y), distance);
-                rb.velocity = new Vector3(vel * normV.x, vel * normV.y, 0);
+                Move(normV, vel);
             }
             else
             {
                 player = null;
-                rb.velocity = new Vector3(0, 0, 0);
                 StartCoroutine(RegenenateVector());
             }
         }
@@ -41,10 +40,13 @@ public class EnemyMovement : MonoBehaviour
         {
             if (patrol)
             {
-                rb.velocity = new Vector3(vectorPatrol.x * velPatrol, vectorPatrol.y * velPatrol, 0);
+                Move(vectorPatrol, velPatrol);
+               
             }
         }
     }
+
+
 
     public void findPlayer(Transform t)
     {
@@ -61,4 +63,8 @@ public class EnemyMovement : MonoBehaviour
             StartCoroutine(RegenenateVector());
         }
     }
+
+    public abstract void Initialize();
+    public abstract void Move(Vector2 v, float vel);
+    public abstract void Stop();
 }

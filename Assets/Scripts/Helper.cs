@@ -19,4 +19,9 @@ public static class Helper
     {
         return Mathf.Sqrt(Mathf.Pow(v1.x - v2.x, 2) + Mathf.Pow(v1.y - v2.y, 2));
     }
+
+    public static Vector2 OrthogonalVector(Vector2 v)
+    {
+        return NormalizeVector(-v.y / v.x, 1);
+    }
 }
