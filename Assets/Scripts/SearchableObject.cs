@@ -11,7 +11,6 @@ public class SearchableObject : MonoBehaviour
     private GlobalSettings globalSettings;
     private Random randomer;
 
-    // Start is called before the first frame update
     void Start()
     {
         isOpened = false;
@@ -23,16 +22,8 @@ public class SearchableObject : MonoBehaviour
     private void DiscoverRandomObject()
     {
         isOpened = true;
-        status.batteries += Mathf.FloorToInt(Random.Range(0f, globalSettings.betteryRate));
-        if (status.batteries > globalSettings.maxBattery)
-        {
-            status.batteries = globalSettings.maxBattery;
-        }
-        status.stamina += Mathf.FloorToInt(Random.Range(0f, globalSettings.vodkaRate));
-        if (status.stamina > globalSettings.maxStamina)
-        {
-            status.stamina = globalSettings.maxStamina;
-        }
+        status.batteries += Mathf.Min(globalSettings.maxBattery, Mathf.FloorToInt(Random.Range(0f, globalSettings.betteryRate)));
+        status.stamina += Mathf.Min(globalSettings.maxStamina, Mathf.FloorToInt(Random.Range(0f, globalSettings.vodkaRate)));
         Debug.Log(status.batteries);
         Debug.Log(status.stamina);
     }
