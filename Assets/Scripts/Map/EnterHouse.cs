@@ -14,7 +14,7 @@ public class EnterHouse : ActionableObject
     protected override void Action()
     {
         rb.constraints = RigidbodyConstraints2D.FreezeRotation | RigidbodyConstraints2D.FreezePositionY;
-        MapTransition.GoTo("House", "SpawnFromMap");
+        MapTransition.GoTo("House", "SpawnFromMap", 1.3f, new Vector3(0f, 0.065f, 0f));
     }
 
     protected override void OnEnter() {}

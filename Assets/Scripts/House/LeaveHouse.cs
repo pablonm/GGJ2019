@@ -4,6 +4,7 @@ public class LeaveHouse : ActionableObject
 {
     public SpriteRenderer sprite;
     private Rigidbody2D rb;
+
     private void Start()
     {
         sprite.gameObject.SetActive(false);
@@ -13,7 +14,7 @@ public class LeaveHouse : ActionableObject
     protected override void Action()
     {
         rb.constraints = RigidbodyConstraints2D.FreezeRotation;
-        MapTransition.GoTo("Map", "SpawnFromHouse");
+        MapTransition.GoTo("Map", "SpawnFromHouse", 2f, Vector3.zero);
     }
 
     protected override void OnEnter()
