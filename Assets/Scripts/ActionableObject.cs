@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 using UnityEngine.UI;
 
 public abstract class ActionableObject : MonoBehaviour
@@ -9,7 +10,7 @@ public abstract class ActionableObject : MonoBehaviour
     public bool repeatable;
     protected bool done = false;
 
-
+    private bool debouncing = false;
     private GameObject actionMessagePrefab;
 
     protected abstract void Action();
@@ -40,8 +41,9 @@ public abstract class ActionableObject : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (!done && collision.gameObject.CompareTag("Player") && Input.GetAxis("Action") > 0)
+        if (!debouncing && Input.GetAxis("Action") > 0)
         {
+            StartCoroutine(Debounce());
             if (!repeatable)
             {
                 done = true;
@@ -67,5 +69,12 @@ public abstract class ActionableObject : MonoBehaviour
             actionMessagePrefab.SetActive(false);
             OnExit();
         }
+    }
+
+    private IEnumerator Debounce() {
+        debouncing = true;
+        yield return new WaitForSeconds(1f);
+        debouncing = false;
+        yield break;
     }
 }

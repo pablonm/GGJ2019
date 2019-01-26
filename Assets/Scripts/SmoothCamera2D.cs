@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.Events;
 
 public class SmoothCamera2D : MonoBehaviour
 {
@@ -10,10 +11,17 @@ public class SmoothCamera2D : MonoBehaviour
     public Vector3 offset;
     Vector3 targetPos;
 
-    // Update is called once per frame
+    private bool blockTracking = false;
+    private Animator animator;
+
+    private void Start()
+    {
+        animator = GetComponent<Animator>();
+    }
+
     void FixedUpdate()
     {
-        if (GlobalSettings.cameraTarget)
+        if (GlobalSettings.cameraTarget && !blockTracking)
         {
             Vector3 posNoZ = transform.position;
             posNoZ.z = GlobalSettings.cameraTarget.transform.position.z;
@@ -27,5 +35,18 @@ public class SmoothCamera2D : MonoBehaviour
             transform.position = Vector3.Lerp(transform.position, targetPos + offset, 0.25f);
 
         }
+    }
+
+    public void FadeOutIn(UnityAction callback) {
+        StartCoroutine(FadeOutInCoroutine(callback));
+    }
+
+    private IEnumerator FadeOutInCoroutine(UnityAction callback) {
+        animator.SetTrigger("fadein");
+        yield return new WaitForSeconds(1f);
+        callback();
+        animator.SetTrigger("fadeout");
+        yield return new WaitForSeconds(1f);
+        yield break;
     }
 }

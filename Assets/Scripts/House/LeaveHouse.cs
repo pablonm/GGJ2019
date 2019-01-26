@@ -3,15 +3,17 @@
 public class LeaveHouse : ActionableObject
 {
     public SpriteRenderer sprite;
-
+    private Rigidbody2D rb;
     private void Start()
     {
         sprite.gameObject.SetActive(false);
+        rb = FindObjectOfType<PlayerStatus>().GetComponent<Rigidbody2D>();
     }
 
     protected override void Action()
     {
-        // TODO: Leave house
+        rb.constraints = RigidbodyConstraints2D.FreezeRotation;
+        MapTransition.GoTo("Map", "SpawnFromHouse");
     }
 
     protected override void OnEnter()
