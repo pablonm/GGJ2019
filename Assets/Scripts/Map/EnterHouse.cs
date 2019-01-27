@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class EnterHouse : ActionableObject
 {
     public GameObject childInHouse;
+    public GameObject fireInHouse;
 
     private Rigidbody2D rb;
     private BGMController bgm;
@@ -25,7 +26,10 @@ public class EnterHouse : ActionableObject
             bgm.PlayClips(new List<PlayClipInfo>() { new PlayClipInfo("calma", true) });
             status.blockMovement = true;
             childInHouse.SetActive(true);
+            childInHouse.transform.Find("sprite").gameObject.GetComponent<SpriteRenderer>().flipX = true;
+            fireInHouse.SetActive(true);
             rb.constraints = RigidbodyConstraints2D.FreezeRotation | RigidbodyConstraints2D.FreezePositionY;
+            status.transform.Find("Animations").Find("Normal").GetComponent<SpriteRenderer>().flipX = false;
             MapTransition.GoTo("House", "SpawnFinalCinematic", 1.3f, new Vector3(0f, 0.065f, 0f));
             StartCoroutine(ShowFinalDialogs());
         }
