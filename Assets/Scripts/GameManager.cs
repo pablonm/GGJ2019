@@ -25,7 +25,14 @@ public class GameManager : MonoBehaviour
 
     public void PlayerDead()
     {
+        StartCoroutine(PlayerDeadDelayed());
+    }
+
+    private IEnumerator PlayerDeadDelayed() {
+        bgm.PlayClips(new List<PlayClipInfo>() { new PlayClipInfo("game over", true) });
+        yield return new WaitForSeconds(2f);
         gameOver.SetActive(true);
+        yield break;
     }
 
     private void Init() {
