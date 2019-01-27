@@ -7,6 +7,7 @@ public class SearchableObject : ActionableObject
     public SpriteRenderer sprite;
     public Sprite normalSprite;
     public Sprite highlightSprite;
+    public Animator anim;
 
     private PlayerStatus status;
 
@@ -20,6 +21,10 @@ public class SearchableObject : ActionableObject
     protected override void Action()
     {
         status.ObtainItems(Mathf.Min(GlobalSettings.maxBattery, Mathf.FloorToInt(Random.Range(0f, GlobalSettings.betteryRate))), Mathf.Min(GlobalSettings.maxStamina, Mathf.FloorToInt(Random.Range(0f, GlobalSettings.vodkaRate))));
+        if (anim)
+        {
+            anim.SetTrigger("search");
+        }
     }
 
     protected override void OnEnter()
