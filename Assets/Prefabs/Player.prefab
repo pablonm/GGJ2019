@@ -1606,7 +1606,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   walkingSpeed: 1
   runningSpeed: 2
-  staminaConsumption: 40
+  staminaConsumption: 15
 --- !u!50 &5505611582945792572
 Rigidbody2D:
   serializedVersion: 4
