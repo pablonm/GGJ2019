@@ -33,12 +33,15 @@ public class PlayerMovement : MonoBehaviour
             status.running = false;
             rb.velocity = Vector2.zero;
         }
-        if (status.health > 0 && !status.recharging)
+        if (status.health > 0 && !status.recharging && !status.blockMovement)
         {
             rb.velocity = new Vector2(Input.GetAxis("Horizontal") * speed, Input.GetAxis("Vertical") * speed);
         }
         if (status.health < 0)
         {
+            rb.velocity = Vector2.zero;
+        }
+        if (status.blockMovement) {
             rb.velocity = Vector2.zero;
         }
     }
