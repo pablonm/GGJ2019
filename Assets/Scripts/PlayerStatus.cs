@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using UnityEngine;
 
 public class PlayerStatus : MonoBehaviour
@@ -29,5 +30,11 @@ public class PlayerStatus : MonoBehaviour
                 a.SetTrigger("hit");
             }
         }
+    }
+
+    public void ObtainItems(int bat, float vodka)
+    {
+        batteries += bat;
+        stamina += vodka;
     }
 }
