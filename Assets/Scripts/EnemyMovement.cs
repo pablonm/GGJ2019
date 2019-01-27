@@ -151,7 +151,7 @@ public abstract class EnemyMovement : MonoBehaviour
         Debug.Log("aqui");
         dying = true;
         anim.SetTrigger("die");
-        TrueDeath();
+        StartCoroutine(TrueDeath());
     }
     private IEnumerator TrueDeath()
     {
