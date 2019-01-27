@@ -21,6 +21,6 @@ public class GameManager : MonoBehaviour
     private void Init() {
         bgm.PlayClips(new List<PlayClipInfo>() { new PlayClipInfo("calma", true) });
         playerStatus.transform.position = initialPlayerPosition;
-        dialogs.ShowDialog("¡Yanka! ¿Donde estas?", null, 4, true);
+        dialogs.ShowDialog("¡Svetla! ¿Donde estas?", null, 4, true);
     }
 }
