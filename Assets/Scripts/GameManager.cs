@@ -18,7 +18,7 @@ public class GameManager : MonoBehaviour
     {
         playerStatus = FindObjectOfType<PlayerStatus>();
         bgm = FindObjectOfType<BGMController>();
-        dialogs = FindObjectOfType<DialogController>();
+        dialogs = FindObjectOfType<PlayerStatus>().gameObject.GetComponent<DialogController>();
         initialPlayerPosition = GameObject.Find("InitialPosition").transform.position;
         Init();
     }

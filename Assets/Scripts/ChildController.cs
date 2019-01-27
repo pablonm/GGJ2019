@@ -18,6 +18,7 @@ public class ChildController : MonoBehaviour
     Transform player;
     Animator anim;
     private GameObject actionMessagePrefab;
+    private bool dialogSaid = false;
 
     private void Awake()
     {
@@ -57,6 +58,10 @@ public class ChildController : MonoBehaviour
     {
         if (grabbing)
         {
+            if (!dialogSaid) {
+                dialogSaid = true;
+                GetComponent<DialogController>().ShowDialog("¡Ayuda, Padre, Ayuda!", null, 3, false);
+            }
             float distance = Vector2.Distance(sprite.position, player.position);
             if (distance < maxDist && distance > minDist)
             {
