@@ -4,12 +4,11 @@ using UnityEngine;
 
 public class EnemyController : EnemyMovement
 {
-    private PlayerStatus playerStatus;
     public float hitInterval = 1f;
 
     public override void Initialize()
     {
-        playerStatus = FindObjectOfType<PlayerStatus>();
+
     }
 
     public override void Move(Vector2 v, float vel)

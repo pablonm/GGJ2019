@@ -16,6 +16,8 @@ public abstract class EnemyMovement : MonoBehaviour
     public Rigidbody2D rb;
     private bool isRight = false;
     public PlayerStatus playerStatus;
+    private Animator anim;
+    private bool dying;
 
     private Transform player;
     private Vector2 vectorPatrol = new Vector2(0, 0);
@@ -23,15 +25,23 @@ public abstract class EnemyMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        SpriteRenderer sr = GetComponent<SpriteRenderer>();
+        sr.color = new Color(Random.Range(0, 92), Random.Range(0, 92), Random.Range(0, 92));
         rb = this.GetComponent<Rigidbody2D>();
         Initialize();
         health = GlobalSettings.maxEnemyLife;
         StartCoroutine(RegenenateVector());
         playerStatus = FindObjectOfType<PlayerStatus>();
+        anim = this.GetComponent<Animator>();
     }
 
     public void Update()
     {
+        if (dying)
+        {
+            rb.velocity = new Vector2(0, 0);
+            return;
+        }
         float vel = this.vel;
         float velPatrol = this.velPatrol;
         if (takingDamage)
@@ -85,10 +95,11 @@ public abstract class EnemyMovement : MonoBehaviour
     private void TakeDamage()
     {
         health -= Time.deltaTime * GlobalSettings.lightDamage;
-
+        Debug.Log(health);
         if (health < 0)
         {
-            Death();
+            Debug.Log("ASDFADSFASDFASDFADS");
+            this.Death();
         }
     }
 
@@ -113,21 +124,39 @@ public abstract class EnemyMovement : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Light"))
         {
-            TakeDamage();
-            takingDamage = true;
+            if (!dying)
+            {
+                TakeDamage();
+                takingDamage = true;
+
+            }
         }
         if (collision.gameObject.CompareTag("Player"))
         {
-            playerStatus.takeDamage(34);
-            Destroy(gameObject);
+            if (!dying)
+            {
+                playerStatus.takeDamage(34);
+                Death();
+
+            }
         }
     }
 
 
     public abstract void Initialize();
     public abstract void Move(Vector2 v, float vel);
-    public virtual void Death()
+
+    private void Death()
     {
-        Destroy(gameObject);
+        Debug.Log("aqui");
+        dying = true;
+        anim.SetTrigger("die");
+        TrueDeath();
+    }
+    private IEnumerator TrueDeath()
+    {
+        
+        yield return new WaitForSeconds(0.5f);
+        Destroy(this.gameObject);
     }
 }
