@@ -1839,6 +1839,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8389155003106721172, guid: c68b9a4ae72d501409c7fa10117285c1,
+        type: 3}
+      propertyPath: m_FontData.m_Font
+      value: 
+      objectReference: {fileID: 12800000, guid: 8f2ad03ff002a70499cfcdc17ef06db0,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c68b9a4ae72d501409c7fa10117285c1, type: 3}
 --- !u!1 &1496643201
@@ -7510,6 +7516,7 @@ MonoBehaviour:
   DistanceThreshold: 6
   patrol: 1
   angleChangeInterval: 1
+  rb: {fileID: 0}
   zigzagAmplitude: 1
   zigzagVel: 3
   hitInterval: 3
