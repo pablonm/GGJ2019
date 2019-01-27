@@ -20,7 +20,10 @@ public class BGMController : MonoBehaviour
 
     private void StopAllSources() {
         foreach (Transform child in transform) {
-            StartCoroutine(FadeOut(child.GetComponent<AudioSource>(), true));
+            AudioSource source = child.GetComponent<AudioSource>();
+            if (source.volume > 0f) {
+                StartCoroutine(FadeOut(source, true));
+            }
         }
     }
 
@@ -39,12 +42,10 @@ public class BGMController : MonoBehaviour
 
     private IEnumerator FadeOut(AudioSource source, bool remove)
     {
-        if (source.volume > 0) {
-            while (source.volume > 0f)
-            {
-                source.volume -= 1f * Time.deltaTime / fadeTime * 2;
-                yield return null;
-            }
+        while (source.volume > 0f)
+        {
+            source.volume -= 1f * Time.deltaTime / fadeTime * 2;
+            yield return null;
         }
         yield break;
     }
