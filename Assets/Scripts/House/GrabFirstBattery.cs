@@ -16,6 +16,7 @@ public class GrabFirstBattery : ActionableObject
     protected override void Action()
     {
         sprite.gameObject.SetActive(false);
+        status.ObtainItems(1, 0);
     }
 
     protected override void OnEnter()

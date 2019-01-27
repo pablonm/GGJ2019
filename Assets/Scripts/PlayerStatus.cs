@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerStatus : MonoBehaviour
 {
@@ -13,6 +14,8 @@ public class PlayerStatus : MonoBehaviour
     public bool usingFlashlight = false;
     public bool grabbingChild = false;
     public bool blockMovement = false;
+    public Animator vodkaItemAnimator;
+    public Animator bateryItemAnimator;
 
     public Animator a;
 
@@ -36,5 +39,19 @@ public class PlayerStatus : MonoBehaviour
     {
         batteries += bat;
         stamina += vodka;
+        StartCoroutine(AnimateItems(bat, vodka));
+    }
+
+    private IEnumerator AnimateItems(int bat, float vodka) {
+        if (bat > 0) {
+            bateryItemAnimator.transform.Find("Text").GetComponent<Text>().text = "x" + bat.ToString();
+            bateryItemAnimator.SetTrigger("obtain");
+            yield return new WaitForSeconds(1f);
+        }
+        if (vodka > 0f) {
+            vodkaItemAnimator.transform.Find("Text").GetComponent<Text>().text = "x" + vodka.ToString();
+            vodkaItemAnimator.SetTrigger("obtain");
+        }
+        yield break;
     }
 }

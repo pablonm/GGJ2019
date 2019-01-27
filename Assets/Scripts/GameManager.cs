@@ -5,9 +5,11 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    public AudioClip InitialDialogClip;
+    public Transform cameraTarget;
+    public float EnemyDebuff;
     private PlayerStatus playerStatus;
     private DialogController dialogs;
-    public AudioClip InitialDialogClip;
     private BGMController bgm;
     private Vector3 initialPlayerPosition;
 
@@ -26,6 +28,11 @@ public class GameManager : MonoBehaviour
     }
 
     private void Init() {
+        GlobalSettings.betteryRate = 2f;
+        GlobalSettings.vodkaRate = 20f;
+        GlobalSettings.maxBattery = 8;
+        GlobalSettings.cameraTarget = cameraTarget;
+        GlobalSettings.EnemyDebuff = EnemyDebuff;
         bgm.PlayClips(new List<PlayClipInfo>() { new PlayClipInfo("calma", true) });
         playerStatus.transform.position = initialPlayerPosition;
         Camera.main.transform.position = new Vector3(initialPlayerPosition.x, initialPlayerPosition.y, Camera.main.transform.position.z);
