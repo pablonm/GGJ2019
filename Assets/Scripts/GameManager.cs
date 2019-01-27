@@ -6,6 +6,7 @@ public class GameManager : MonoBehaviour
 {
     private PlayerStatus playerStatus;
     private DialogController dialogs;
+    public AudioClip InitialDialogClip;
     private BGMController bgm;
     private Vector3 initialPlayerPosition;
 
@@ -21,6 +22,7 @@ public class GameManager : MonoBehaviour
     private void Init() {
         bgm.PlayClips(new List<PlayClipInfo>() { new PlayClipInfo("calma", true) });
         playerStatus.transform.position = initialPlayerPosition;
-        dialogs.ShowDialog("¡Svetla! ¿Donde estas?", null, 4, true);
+        Camera.main.transform.position = new Vector3(initialPlayerPosition.x, initialPlayerPosition.y, Camera.main.transform.position.z);
+        dialogs.ShowDialog("¡Svetla! ¿Donde estas?", InitialDialogClip, 4, true);
     }
 }
