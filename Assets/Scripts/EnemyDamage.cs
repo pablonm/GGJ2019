@@ -19,7 +19,7 @@ public class EnemyDamage : MonoBehaviour
 
         if (health < 0)
         {
-            Debug.Log("Mori xD");
+            Destroy(gameObject);
         }
     }
 

@@ -86,7 +86,7 @@ public abstract class EnemyMovement : MonoBehaviour
 
         if (health < 0)
         {
-            Stop();
+            Death();
         }
     }
 
@@ -119,5 +119,8 @@ public abstract class EnemyMovement : MonoBehaviour
 
     public abstract void Initialize();
     public abstract void Move(Vector2 v, float vel);
-    public abstract void Stop();
+    public virtual void Death()
+    {
+        Destroy(gameObject);
+    }
 }

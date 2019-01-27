@@ -22,11 +22,6 @@ public class EnemyController : EnemyMovement
         rb.velocity = new Vector2((v.x + desviation.x) * vel, (v.y + desviation.y) * vel);
     }
 
-    public override void Stop()
-    {
-        rb.velocity = new Vector3(0, 0, 0);
-    }
-
     private new void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
