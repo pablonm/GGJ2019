@@ -8,7 +8,7 @@ public class EnemyController : EnemyMovement
 
     public override void Initialize()
     {
-
+        health = GlobalSettings.maxDogLife;
     }
 
     public override void Move(Vector2 v, float vel)

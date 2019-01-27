@@ -8,6 +8,7 @@ public static class GlobalSettings
     public static int maxBattery = 8;
     public static Transform cameraTarget;
     public static float maxEnemyLife = 50f;
+    public static float maxDogLife = 20f;
     public static float lightDamage = 10f;
     public static float EnemyDebuff = 0.25f;
     public static float MinLightDuration = 2f;
