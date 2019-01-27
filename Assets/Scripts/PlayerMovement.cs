@@ -19,7 +19,7 @@ public class PlayerMovement : MonoBehaviour
     private void Update()
     {
         float speed = walkingSpeed;
-        if (!status.recharging && status.stamina > 0)
+        if (!status.recharging && !status.grabbingChild && status.stamina > 0)
         {
             status.running = Input.GetAxis("Fire2") > 0;
             if (status.running)
@@ -41,5 +41,10 @@ public class PlayerMovement : MonoBehaviour
         {
             rb.velocity = Vector2.zero;
         }
+    }
+
+    public void grabChild(bool g)
+    {
+        status.grabbingChild = g;
     }
 }

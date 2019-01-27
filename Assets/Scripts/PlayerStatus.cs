@@ -9,4 +9,5 @@ public class PlayerStatus : MonoBehaviour
     public bool running = false;
     public bool recharging = false;
     public bool usingFlashlight = false;
+    public bool grabbingChild = false;
 }

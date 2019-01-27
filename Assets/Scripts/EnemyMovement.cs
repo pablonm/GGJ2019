@@ -13,14 +13,16 @@ public abstract class EnemyMovement : MonoBehaviour
     public bool patrol = true;
     public float angleChangeInterval = 1;
     private bool takingDamage = false;
-    
+    public Rigidbody2D rb;
+    private bool isRight = false;
 
     private Transform player;
-    private Vector2 vectorPatrol;
+    private Vector2 vectorPatrol = new Vector2(0, 0);
 
     // Start is called before the first frame update
     void Start()
     {
+        rb = this.GetComponent<Rigidbody2D>();
         Initialize();
         health = GlobalSettings.maxEnemyLife;
         StartCoroutine(RegenenateVector());
@@ -36,7 +38,6 @@ public abstract class EnemyMovement : MonoBehaviour
             velPatrol *= GlobalSettings.EnemyDebuff;
             takingDamage = false;
         }
-        //Debug.Log(takingDamage + " " + vel);
         switch (state)
         {
             case State.Idle:
@@ -56,8 +57,28 @@ public abstract class EnemyMovement : MonoBehaviour
                 };
                 break;
         }
-    }    
+    }
 
+    public void FixedUpdate()
+    {
+        if (rb.velocity.x > 0)
+        {
+            if (!isRight)
+            {
+                isRight = true;
+                this.transform.localScale = new Vector2(-this.transform.localScale.x, this.transform.localScale.y);
+            }
+        }
+        else
+        {
+            if (isRight)
+            {
+                isRight = false;
+                this.transform.localScale = new Vector2(-this.transform.localScale.x, this.transform.localScale.y);
+            }
+        }
+        
+    }
 
     private void TakeDamage()
     {
