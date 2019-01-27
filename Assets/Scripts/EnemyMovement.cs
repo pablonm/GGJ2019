@@ -15,6 +15,7 @@ public abstract class EnemyMovement : MonoBehaviour
     private bool takingDamage = false;
     public Rigidbody2D rb;
     private bool isRight = false;
+    public PlayerStatus playerStatus;
 
     private Transform player;
     private Vector2 vectorPatrol = new Vector2(0, 0);
@@ -26,6 +27,7 @@ public abstract class EnemyMovement : MonoBehaviour
         Initialize();
         health = GlobalSettings.maxEnemyLife;
         StartCoroutine(RegenenateVector());
+        playerStatus = FindObjectOfType<PlayerStatus>();
     }
 
     public void Update()
@@ -113,6 +115,11 @@ public abstract class EnemyMovement : MonoBehaviour
         {
             TakeDamage();
             takingDamage = true;
+        }
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            playerStatus.takeDamage(34);
+            Destroy(gameObject);
         }
     }
 

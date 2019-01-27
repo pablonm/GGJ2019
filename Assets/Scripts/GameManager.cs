@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -19,6 +20,11 @@ public class GameManager : MonoBehaviour
         Init();
     }
 
+    internal static void PlayerDead()
+    {
+        throw new NotImplementedException();
+    }
+
     private void Init() {
         bgm.PlayClips(new List<PlayClipInfo>() { new PlayClipInfo("calma", true) });
         playerStatus.transform.position = initialPlayerPosition;
@@ -31,4 +37,5 @@ public class GameManager : MonoBehaviour
         dialogs.ShowDialog("¡Svetla! ¿Donde estas?", InitialDialogClip, 4, true);
         yield break;
     }
+
 }

@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 public class PlayerStatus : MonoBehaviour
 {
@@ -11,4 +12,28 @@ public class PlayerStatus : MonoBehaviour
     public bool usingFlashlight = false;
     public bool grabbingChild = false;
     public bool blockMovement = false;
+
+    public Animator a;
+
+    public void takeDamage(int dam)
+    {
+        health -= dam;
+        if ( health < 1)
+        {
+            a.SetTrigger("die");
+            Debug.Log("Mori xd");
+            //PlayerDead();
+        }
+        else
+        {
+            a.SetTrigger("hit");
+        }
+    }
+
+    private IEnumerator PlayerDead()
+    {
+        yield return new WaitForSeconds(1f);
+        GameManager.PlayerDead();
+        yield break;
+    }
 }

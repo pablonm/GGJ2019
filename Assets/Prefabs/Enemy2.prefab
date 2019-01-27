@@ -55,11 +55,11 @@ GameObject:
   - component: {fileID: 9114087517149904514}
   - component: {fileID: 1529265255630338838}
   - component: {fileID: 9114087517149904512}
-  - component: {fileID: 7508813930290060968}
+  - component: {fileID: 5698562274527121472}
   - component: {fileID: 3080707069530859844}
   - component: {fileID: 2684665993954760609}
   m_Layer: 0
-  m_Name: Enemy
+  m_Name: Enemy2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -117,7 +117,7 @@ Rigidbody2D:
   m_SleepingMode: 0
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &7508813930290060968
+--- !u!114 &5698562274527121472
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -126,19 +126,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 9114087517149904638}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 945ac82c265085145ba4e5fb1c255e72, type: 3}
+  m_Script: {fileID: 11500000, guid: 3f94c8167c722fc4a99a1e5dbba99d86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   state: 0
-  vel: 1
-  velPatrol: 0.5
+  vel: 5
+  velPatrol: 1
   DistanceThreshold: 6
   patrol: 1
   angleChangeInterval: 1
-  rb: {fileID: 9114087517149904512}
-  zigzagAmplitude: 1
+  rb: {fileID: 0}
+  zigzagAmplitude: 3
   zigzagVel: 3
-  hitInterval: 3
+  hitInterval: 1
 --- !u!212 &3080707069530859844
 SpriteRenderer:
   m_ObjectHideFlags: 0
