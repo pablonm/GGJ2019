@@ -107,7 +107,7 @@ public class ChildController : MonoBehaviour
 
     private void Move(Vector2 v)
     {
-        rb.velocity = Helper.NormalizeVector(v.x, v.y);
+        rb.velocity = Helper.NormalizeVector(v.x, v.y) * 1.05f;
         if (v.x > 0)
         {
             if (sprite.localScale.x < 0)

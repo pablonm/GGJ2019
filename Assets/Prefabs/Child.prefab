@@ -49,7 +49,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: -0.45}
   serializedVersion: 2
-  m_Radius: 0.3
+  m_Radius: 0.4
 --- !u!50 &7920048525879148332
 Rigidbody2D:
   serializedVersion: 4
@@ -85,8 +85,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   button: 1
   message: Carry
-  minDist: 0.25
-  maxDist: 0.4
+  minDist: 0.3
+  maxDist: 0.8
 --- !u!1 &7920048526450266056
 GameObject:
   m_ObjectHideFlags: 0
@@ -165,7 +165,7 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
+  m_MaskInteraction: 2
   m_SpriteSortPoint: 0
 --- !u!95 &7920048526450266053
 Animator:
