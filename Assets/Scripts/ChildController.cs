@@ -61,6 +61,7 @@ public class ChildController : MonoBehaviour
             if (!dialogSaid) {
                 dialogSaid = true;
                 GetComponent<DialogController>().ShowDialog("¡Ayuda, Padre, Ayuda!", null, 3, false);
+                FindObjectOfType<BGMController>().ActivateTrack("batalla");
             }
             float distance = Vector2.Distance(sprite.position, player.position);
             if (distance < maxDist && distance > minDist)
