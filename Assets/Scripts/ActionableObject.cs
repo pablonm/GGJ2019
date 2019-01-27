@@ -41,7 +41,7 @@ public abstract class ActionableObject : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (!debouncing && Input.GetAxis("Action") > 0)
+        if (!debouncing && !done && Input.GetAxis("Action") > 0)
         {
             StartCoroutine(Debounce());
             if (!repeatable)
