@@ -23,6 +23,12 @@ public class GameManager : MonoBehaviour
         bgm.PlayClips(new List<PlayClipInfo>() { new PlayClipInfo("calma", true) });
         playerStatus.transform.position = initialPlayerPosition;
         Camera.main.transform.position = new Vector3(initialPlayerPosition.x, initialPlayerPosition.y, Camera.main.transform.position.z);
+        StartCoroutine(initDialog());
+    }
+
+    private IEnumerator initDialog() {
+        yield return new WaitForSeconds(1f);
         dialogs.ShowDialog("¡Svetla! ¿Donde estas?", InitialDialogClip, 4, true);
+        yield break;
     }
 }
