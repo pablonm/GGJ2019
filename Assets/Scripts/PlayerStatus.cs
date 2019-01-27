@@ -17,23 +17,17 @@ public class PlayerStatus : MonoBehaviour
 
     public void takeDamage(int dam)
     {
-        health -= dam;
-        if ( health < 1)
-        {
-            a.SetTrigger("die");
-            Debug.Log("Mori xd");
-            //PlayerDead();
+        if (health > 0) {
+            health -= dam;
+            if ( health < 1)
+            {
+                a.SetTrigger("die");
+                // TODO call die routine in GameManager
+            }
+            else
+            {
+                a.SetTrigger("hit");
+            }
         }
-        else
-        {
-            a.SetTrigger("hit");
-        }
-    }
-
-    private IEnumerator PlayerDead()
-    {
-        yield return new WaitForSeconds(1f);
-        GameManager.PlayerDead();
-        yield break;
     }
 }
