@@ -10,4 +10,6 @@ public static class GlobalSettings
     public static float maxEnemyLife = 100f;
     public static float lightDamage = 10f;
     public static float EnemyDebuff = 0.25f;
+    public static float MinLightDuration = 2f;
+    public static float MaxLightDuration = 3f;
 }
