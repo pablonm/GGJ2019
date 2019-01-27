@@ -49,7 +49,7 @@ public class BGMController : MonoBehaviour
     {
         while (source.volume > 0f)
         {
-            source.volume -= 1f * Time.deltaTime / fadeTime;
+            source.volume -= 1f * Time.deltaTime / fadeTime * 2;
             yield return null;
         }
         if (remove)
