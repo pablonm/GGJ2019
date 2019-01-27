@@ -19,6 +19,7 @@ public class LeaveHouse : ActionableObject
     {
         
         rb.constraints = RigidbodyConstraints2D.FreezeRotation;
+        GetComponent<AudioSource>().Play();
         MapTransition.GoTo("Map", "SpawnFromHouse", 2f, Vector3.zero);
         StartCoroutine(PlaySong());
     }

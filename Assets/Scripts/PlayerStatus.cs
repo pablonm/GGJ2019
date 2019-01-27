@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -16,6 +15,8 @@ public class PlayerStatus : MonoBehaviour
     public bool blockMovement = false;
     public Animator vodkaItemAnimator;
     public Animator bateryItemAnimator;
+    public Transform hitSounds;
+    public AudioSource deathSound;
 
     public Animator a;
 
@@ -23,13 +24,15 @@ public class PlayerStatus : MonoBehaviour
     {
         if (health > 0) {
             health -= dam;
-            if ( health < 1)
+            if (health < 1)
             {
+                deathSound.Play();
                 a.SetTrigger("die");
                 // TODO call die routine in GameManager
             }
             else
             {
+                hitSounds.GetChild(Random.Range(0, 3)).GetComponent<AudioSource>().Play();
                 a.SetTrigger("hit");
             }
         }
