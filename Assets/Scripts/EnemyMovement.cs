@@ -21,10 +21,12 @@ public abstract class EnemyMovement : MonoBehaviour
 
     private Transform player;
     private Vector2 vectorPatrol = new Vector2(0, 0);
+    private AudioSource audio;
 
     // Start is called before the first frame update
     void Start()
     {
+        audio = GetComponent<AudioSource>();
         SpriteRenderer sr = GetComponent<SpriteRenderer>();
         sr.color = new Color(Random.Range(0, 92), Random.Range(0, 92), Random.Range(0, 92));
         rb = this.GetComponent<Rigidbody2D>();
@@ -52,9 +54,17 @@ public abstract class EnemyMovement : MonoBehaviour
         switch (state)
         {
             case State.Idle:
+                if (audio.isPlaying)
+                {
+                    audio.Stop();
+                }
                 Move(vectorPatrol, velPatrol);
                 break;
             case State.Following:
+                if (!audio.isPlaying)
+                {
+                    audio.Play();
+                }
                 float distance = Helper.Distance(this.transform.position, player.position);
                 if (distance < DistanceThreshold)
                 {
@@ -145,7 +155,6 @@ public abstract class EnemyMovement : MonoBehaviour
 
     private void Death()
     {
-        Debug.Log("aqui");
         dying = true;
         anim.SetTrigger("die");
         StartCoroutine(TrueDeath());
