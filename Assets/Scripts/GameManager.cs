@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
     public AudioClip InitialDialogClip;
     public Transform cameraTarget;
     public float EnemyDebuff;
+    public GameObject gameOver;
     private PlayerStatus playerStatus;
     private DialogController dialogs;
     private BGMController bgm;
@@ -22,9 +23,9 @@ public class GameManager : MonoBehaviour
         Init();
     }
 
-    internal static void PlayerDead()
+    public void PlayerDead()
     {
-        throw new NotImplementedException();
+        gameOver.SetActive(true);
     }
 
     private void Init() {

@@ -28,7 +28,7 @@ public class PlayerStatus : MonoBehaviour
             {
                 deathSound.Play();
                 a.SetTrigger("die");
-                // TODO call die routine in GameManager
+                FindObjectOfType<GameManager>().PlayerDead();
             }
             else
             {
