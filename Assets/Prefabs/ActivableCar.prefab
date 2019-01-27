@@ -48,7 +48,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   button: 0
-  message: Turn Lights on
+  message: Prender las luces
   repeatable: 0
   ActivableLightObject: {fileID: 472883272790110046}
   sprite: {fileID: 472883272139589360}
