@@ -20,7 +20,7 @@ public class Spawner : MonoBehaviour
         for (int i = 0; i < enemy2ToSpawn; i++)
         {
             int indexSelected = Random.Range(0, posEnemy.Length - 1);
-            Instantiate(enemy1Prefab, posEnemy[indexSelected].position, Quaternion.identity);
+            Instantiate(enemy2Prefab, posEnemy[indexSelected].position, Quaternion.identity);
         }
     }
 }

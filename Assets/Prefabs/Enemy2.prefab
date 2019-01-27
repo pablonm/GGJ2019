@@ -43,7 +43,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02a94ea1d092f8d47ade02c13cd4bf02, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyViewDistance: 2
+  enemyViewDistance: 8
 --- !u!1 &9114087517149904638
 GameObject:
   m_ObjectHideFlags: 0
@@ -55,7 +55,7 @@ GameObject:
   - component: {fileID: 9114087517149904514}
   - component: {fileID: 1529265255630338838}
   - component: {fileID: 9114087517149904512}
-  - component: {fileID: 5698562274527121472}
+  - component: {fileID: 6648770667247808987}
   - component: {fileID: 3080707069530859844}
   - component: {fileID: 2684665993954760609}
   m_Layer: 0
@@ -93,9 +93,9 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.12, y: -0.31}
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.37
 --- !u!50 &9114087517149904512
 Rigidbody2D:
   serializedVersion: 4
@@ -117,7 +117,7 @@ Rigidbody2D:
   m_SleepingMode: 0
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &5698562274527121472
+--- !u!114 &6648770667247808987
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -126,18 +126,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 9114087517149904638}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3f94c8167c722fc4a99a1e5dbba99d86, type: 3}
+  m_Script: {fileID: 11500000, guid: 945ac82c265085145ba4e5fb1c255e72, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  health: 0
   state: 0
-  vel: 5
+  vel: 2
   velPatrol: 1
   DistanceThreshold: 6
   patrol: 1
   angleChangeInterval: 1
   rb: {fileID: 0}
-  zigzagAmplitude: 3
-  zigzagVel: 3
+  playerStatus: {fileID: 0}
   hitInterval: 1
 --- !u!212 &3080707069530859844
 SpriteRenderer:
@@ -176,7 +176,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 68121244d36dbe24dafbe3933eaf8f49, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 1da9de55166b19a4e885c4959460c916, type: 3}
   m_Color: {r: 1, g: 0.28237662, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -197,7 +197,7 @@ Animator:
   m_GameObject: {fileID: 9114087517149904638}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: f26f1f1e5a9067c40b02d08431b4d726, type: 2}
+  m_Controller: {fileID: 9100000, guid: 69066a1ab4ca7f341a2ef5ac853323cf, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

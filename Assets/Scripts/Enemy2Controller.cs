@@ -7,12 +7,12 @@ public class Enemy2Controller : EnemyMovement
     public float zigzagAmplitude = 3;
     public float zigzagVel = 3;
     private float angle = 0;
-    private PlayerStatus playerStatus;
     public float hitInterval = 1f;
 
     public override void Initialize()
     {
         playerStatus = FindObjectOfType<PlayerStatus>();
+        health = GlobalSettings.maxEnemyLife;
     }
 
     public override void Move(Vector2 v, float vel)

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public abstract class EnemyMovement : MonoBehaviour
 {
-    private float health;
+    public float health;
     public enum State { Idle, Following, Dying };
     public State state = State.Idle;
     public float vel = 5;
@@ -29,7 +29,6 @@ public abstract class EnemyMovement : MonoBehaviour
         sr.color = new Color(Random.Range(0, 92), Random.Range(0, 92), Random.Range(0, 92));
         rb = this.GetComponent<Rigidbody2D>();
         Initialize();
-        health = GlobalSettings.maxEnemyLife;
         StartCoroutine(RegenenateVector());
         playerStatus = FindObjectOfType<PlayerStatus>();
         anim = this.GetComponent<Animator>();
@@ -95,10 +94,8 @@ public abstract class EnemyMovement : MonoBehaviour
     private void TakeDamage()
     {
         health -= Time.deltaTime * GlobalSettings.lightDamage;
-        Debug.Log(health);
         if (health < 0)
         {
-            Debug.Log("ASDFADSFASDFASDFADS");
             this.Death();
         }
     }
