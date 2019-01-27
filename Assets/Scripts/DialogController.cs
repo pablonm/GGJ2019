@@ -10,7 +10,7 @@ public class DialogController : MonoBehaviour
 
     private PlayerStatus status;
 
-    private void Start()
+    private void Awake()
     {
         status = FindObjectOfType<PlayerStatus>();
     }
